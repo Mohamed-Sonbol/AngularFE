@@ -14,7 +14,9 @@ CREATE TABLE courses (
 );
 
 1-create those tables then insert some values
-2-edit the Mysql db connection details in the server.js file
+
+2-edit the Mysql db connection details in the server.js file in the node-crud-api floder
+
 3-run
 
 PS. RUN NPM install for mysql2, cors, express and body-parser if you lack any
