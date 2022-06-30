@@ -1,0 +1,39 @@
+table {
+    width: 100%;
+}
+
+.mat-column-ID {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 30% !important;
+    width: 30% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    word-break: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+body {
+    background-image: url("../app/page/back.jpg");
+    background-size: 1550px;
+}
+
+.button {
+
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        height:100px !important;
+        width:100px !important;
+        font-size:48px !important;
+
+}
+
