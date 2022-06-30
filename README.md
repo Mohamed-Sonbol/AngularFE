@@ -1,3 +1,24 @@
+# MYSQL code
+CREATE TABLE students (
+    id int NOT NULL AUTO_INCREMENT,
+    name varchar(100)NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE courses (
+    id int NOT NULL AUTO_INCREMENT,
+    name varchar(100)NOT NULL,
+    student_id int,
+    PRIMARY KEY (id)
+    FOREIGN KEY (student_id) REFERENCES students(id)
+);
+
+1-create those tables then insert some values
+2-edit the Mysql db connection details in the server.js file
+3-run
+
+
+
 # CRUD
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.13.
