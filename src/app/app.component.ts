@@ -15,34 +15,32 @@ import { CrudService } from './service/crud.service';
   ]
 })
 export class AppComponent {
-  @ViewChild('callAPIDialog')
-  callAPIDialog!: TemplateRef<any>;
-  @ViewChild('callAPIDialog2')
-  callAPIDialog2!: TemplateRef<any>;
-  @ViewChild('callAPIDialog3')
-  callAPIDialog3!: TemplateRef<any>;
-  @ViewChild('callAPIDialog4')
-  callAPIDialog4!: TemplateRef<any>;
-  @ViewChild('callAPIDialog5')
-  callAPIDialog5!: TemplateRef<any>;
-  @ViewChild('background')
-  background!: TemplateRef<any>;
+  @ViewChild('AddStudentDialog')
+  AddStudentDialog!: TemplateRef<any>;
+  @ViewChild('ViewStudentDialog')
+  ViewStudentDialog!: TemplateRef<any>;
+  @ViewChild('UpdateStudentDialog')
+  UpdateStudentDialog!: TemplateRef<any>;
+  @ViewChild('DeleteStudentDialog')
+  DeleteStudentDialog!: TemplateRef<any>;
+  @ViewChild('ViewCourseDialog')
+  ViewCourseDialog!: TemplateRef<any>;
   constructor(public dialog: MatDialog, private crudService: CrudService) { }
 
-  ELEMENT_DATA: any = [];
-  ELEMENT_DATA2: any = [];
+  Students_DATA: any = [];
+  Course_DATA2: any = [];
   displayedColumns: string[] = ['ID','Name'];
   displayedColumns2: string[] = ['ID','Course Name', "Student_ID"];
-  dataSource = this.ELEMENT_DATA;
-  dataSource2 = this.ELEMENT_DATA2;
+  ViewStudentsdataSource = this.Students_DATA;
+  ViewSCoursesdataSource = this.Course_DATA2;
 
 
 
 
 
 
-  openDialog() {
-    let dialogRef = this.dialog.open(this.callAPIDialog);
+  openAddStudentDialog() {
+    let dialogRef = this.dialog.open(this.AddStudentDialog);
     dialogRef.afterClosed().subscribe((result: string | undefined) => {
         if (result !== undefined) {
             if (result !== 'no') {
@@ -55,16 +53,16 @@ export class AppComponent {
     })
 }
 
-openDialog2() {
+openViewStudentDialog() {
   this.crudService.GetUsers()
   .subscribe((res) => {
-    this.ELEMENT_DATA = res;
-      console.log(this.ELEMENT_DATA.data)
-      this.dataSource = this.ELEMENT_DATA.data;
+    this.Students_DATA = res;
+      console.log(this.Students_DATA.data)
+      this.ViewStudentsdataSource = this.Students_DATA.data;
     }, (err: any) => {
       console.log(err);
   });
-  let dialogRef = this.dialog.open(this.callAPIDialog2);
+  let dialogRef = this.dialog.open(this.ViewStudentDialog);
   dialogRef.updateSize('30%');
   dialogRef.afterClosed().subscribe((result: string | undefined) => {
       if (result !== undefined) {
@@ -81,9 +79,9 @@ openDialog2() {
 }
 
 
-openDialog3() {
+openUpdateStudentDialog() {
 
-  let dialogRef = this.dialog.open(this.callAPIDialog3);
+  let dialogRef = this.dialog.open(this.UpdateStudentDialog);
   dialogRef.afterClosed().subscribe((result: string | undefined) => {
       if (result !== undefined) {
           if (result !== 'no') {
@@ -96,9 +94,10 @@ openDialog3() {
   })
 
 
-}openDialog4() {
+}
+openDeleteStudentDialog() {
   
-  let dialogRef = this.dialog.open(this.callAPIDialog4);
+  let dialogRef = this.dialog.open(this.DeleteStudentDialog);
   dialogRef.afterClosed().subscribe((result: string | undefined) => {
       if (result !== undefined) {
           if (result !== 'no') {
@@ -111,16 +110,17 @@ openDialog3() {
   })
 
 
-}openDialog5() {
+}
+openViewCourseDialog() {
   this.crudService.Getcourses()
   .subscribe((res) => {
-    this.ELEMENT_DATA2 = res;
-      console.log(this.ELEMENT_DATA2.data)
-      this.dataSource2 = this.ELEMENT_DATA2.data;
+    this.Course_DATA2 = res;
+      console.log(this.Course_DATA2.data)
+      this.ViewSCoursesdataSource = this.Course_DATA2.data;
     }, (err: any) => {
       console.log(err);
   });
-  let dialogRef = this.dialog.open(this.callAPIDialog5);
+  let dialogRef = this.dialog.open(this.ViewCourseDialog);
   dialogRef.updateSize('30%');
   dialogRef.afterClosed().subscribe((result: string | undefined) => {
       if (result !== undefined) {
@@ -138,17 +138,13 @@ openDialog3() {
 
 
 
-onSend3(form: NgForm){  
+onSendDelete(form: NgForm){  
   if(form.status === 'INVALID')
   {
     // display error in your form
   }else{
     this.crudService.deleteUser(form.value.Studentid)
-.subscribe((res) => {
-  this.ELEMENT_DATA = res;
-    console.log(this.ELEMENT_DATA.data)
-    this.dataSource = this.ELEMENT_DATA.data;
-  }, (err: any) => {
+.subscribe((err: any) => {
     console.log(err);
 });
       console.log(form.value.Studentname)
@@ -160,17 +156,13 @@ onSend3(form: NgForm){
 
 
 
-onSend2(form: NgForm){  
+onSendUpdate(form: NgForm){  
   if(form.status === 'INVALID')
   {
     // display error in your form
   }else{
     this.crudService.updateUser(form.value.Studentid, form.value.Studentname)
-.subscribe((res) => {
-  this.ELEMENT_DATA = res;
-    console.log(this.ELEMENT_DATA.data)
-    this.dataSource = this.ELEMENT_DATA.data;
-  }, (err: any) => {
+.subscribe((err: any) => {
     console.log(err);
 });
       console.log(form.value.Studentname)
@@ -181,7 +173,7 @@ onSend2(form: NgForm){
 }
 
 
-onSend(form: NgForm){  
+onSendAdd(form: NgForm){  
   if(form.status === 'INVALID')
   {
     // display error in your form

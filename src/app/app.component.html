@@ -1,113 +1,135 @@
-<body>
-  <br>
-  <br>
-  <br>
-<div class="main-div">
-  <mat-grid-list cols="2" rowHeight="3:1">
-    <mat-grid-tile><button mat-raised-button color="primary" (click)="openDialog()">Add Student</button></mat-grid-tile>
-    <mat-grid-tile><button mat-raised-button color="primary" (click)="openDialog2()">View Students</button></mat-grid-tile>
-    <mat-grid-tile><button mat-raised-button color="primary" (click)="openDialog3()">Update Students</button></mat-grid-tile>
-    <mat-grid-tile><button mat-raised-button color="primary" (click)="openDialog4()">Delete Students</button></mat-grid-tile>
-    <div class = "button"><button mat-raised-button color="primary" (click)="openDialog5()">View Courses</button></div>
-
-  </mat-grid-list>
+<div class="context">
 
 </div>
-<ng-template #callAPIDialog>
-  <form #userForm="ngForm" (ngSubmit)="onSend(userForm)">
-    <h2 matDialogTitle>Add Student</h2>
-    <mat-form-field appearance="fill">
-      <input matInput type="text" placeholder="Student name" name="Studentname" ngModel required>
-    </mat-form-field>
-    <mat-dialog-actions align="end">
-      <button mat-raised-button color="primary" matDialogClose="no">Cancel</button>
-      <button mat-raised-button color="primary" type="submit" mat-button>Submit</button>
-    </mat-dialog-actions>
-  </form>
-</ng-template>
-
-<ng-template #callAPIDialog2 id = callAPIDialog>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
 
 
-    <ng-container matColumnDef="ID">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container>
+<div class="area" >
+  
+      <ul class="circles">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+      </ul>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="main-div">
+        <mat-grid-list cols="2" rowHeight="3:1">
+          <mat-grid-tile><button mat-raised-button color="primary" (click)="openAddStudentDialog()">Add Student</button></mat-grid-tile>
+          <mat-grid-tile><button mat-raised-button color="primary" (click)="openViewStudentDialog()">View Students</button></mat-grid-tile>
+          <mat-grid-tile><button mat-raised-button color="primary" (click)="openUpdateStudentDialog()">Update Students</button></mat-grid-tile>
+          <mat-grid-tile><button mat-raised-button color="primary" (click)="openDeleteStudentDialog()">Delete Students</button></mat-grid-tile>
+          <div class = "button"><button mat-raised-button color="primary" (click)="openViewCourseDialog()">View Courses</button></div>
+      
+        </mat-grid-list>
+      
+      </div>
+      <ng-template #AddStudentDialog>
+        <form #userForm="ngForm" (ngSubmit)="onSendAdd(userForm)">
+          <h2 matDialogTitle>Add Student</h2>
+          <mat-form-field appearance="fill">
+            <input matInput type="text" placeholder="Student name" name="Studentname" ngModel required>
+          </mat-form-field>
+          <mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" matDialogClose="no">Cancel</button>
+            <button mat-raised-button color="primary" type="submit" mat-button>Submit</button>
+          </mat-dialog-actions>
+        </form>
+      </ng-template>
+      
+      <ng-template #ViewStudentDialog>
+        <table mat-table [dataSource]="ViewStudentsdataSource" class="mat-elevation-z8">
+      
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+      
+      
+          <ng-container matColumnDef="ID">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+      
+      
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </ng-template>
+      
+      <ng-template #UpdateStudentDialog>
+        <form #userForm="ngForm" (ngSubmit)="onSendUpdate(userForm)">
+          <h2 matDialogTitle>Update Student</h2>
+          <mat-form-field appearance="fill">
+            <input matInput type="text" placeholder="Student new name" name="Studentname" ngModel required>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="fill">
+            <input matInput type="text" placeholder="Student id" name="Studentid" ngModel required>
+          </mat-form-field>
+          <mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" matDialogClose="no">Cancel</button>
+            <button mat-raised-button color="primary" type="submit" mat-button>Submit</button>
+          </mat-dialog-actions>
+        </form>
+      </ng-template>
+      
+      <ng-template #DeleteStudentDialog>
+        <form #userForm="ngForm" (ngSubmit)="onSendDelete(userForm)">
+          <h2 matDialogTitle>Delete Student</h2>
+          <mat-form-field appearance="fill">
+            <input matInput type="text" placeholder="Student id" name="Studentid" ngModel required>
+          </mat-form-field>
+          <mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" matDialogClose="no">Cancel</button>
+            <button mat-raised-button color="primary" type="submit" mat-button>Submit</button>
+          </mat-dialog-actions>
+        </form>
+      </ng-template>
+      
+      
+      <ng-template #ViewCourseDialog>
+        <table mat-table [dataSource]="ViewSCoursesdataSource" class="mat-elevation-z8">
+      
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+      
+      
+          <ng-container matColumnDef="ID">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="Course Name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="Student_ID">
+            <th mat-header-cell *matHeaderCellDef> Student ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.student_id}} </td>
+          </ng-container>
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+        </table>
+      </ng-template>
+</div >
 
-    <!-- Name Column -->
-    <ng-container matColumnDef="Name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
 
 
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-</ng-template>
-
-<ng-template #callAPIDialog3>
-  <form #userForm="ngForm" (ngSubmit)="onSend2(userForm)">
-    <h2 matDialogTitle>Update Student</h2>
-    <mat-form-field appearance="fill">
-      <input matInput type="text" placeholder="Student new name" name="Studentname" ngModel required>
-    </mat-form-field>
-    <br>
-    <mat-form-field appearance="fill">
-      <input matInput type="text" placeholder="Student id" name="Studentid" ngModel required>
-    </mat-form-field>
-    <mat-dialog-actions align="end">
-      <button mat-raised-button color="primary" matDialogClose="no">Cancel</button>
-      <button mat-raised-button color="primary" type="submit" mat-button>Submit</button>
-    </mat-dialog-actions>
-  </form>
-</ng-template>
-
-<ng-template #callAPIDialog4>
-  <form #userForm="ngForm" (ngSubmit)="onSend3(userForm)">
-    <h2 matDialogTitle>Delete Student</h2>
-    <mat-form-field appearance="fill">
-      <input matInput type="text" placeholder="Student id" name="Studentid" ngModel required>
-    </mat-form-field>
-    <mat-dialog-actions align="end">
-      <button mat-raised-button color="primary" matDialogClose="no">Cancel</button>
-      <button mat-raised-button color="primary" type="submit" mat-button>Submit</button>
-    </mat-dialog-actions>
-  </form>
-</ng-template>
-
-
-<ng-template #callAPIDialog5 id = callAPIDialog5>
-  <table mat-table [dataSource]="dataSource2" class="mat-elevation-z8">
-
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-
-    <ng-container matColumnDef="ID">
-      <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="Course Name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Student_ID">
-      <th mat-header-cell *matHeaderCellDef> Student ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.student_id}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
-  </table>
-</ng-template>
-</body>
 

@@ -30,10 +30,10 @@ app.get('/', function (req, res) {
 });
 // connection configurations
 var dbConn = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'qwer1234',
-    database: 'testdb',
+    host: 'sql11.freemysqlhosting.net',
+    user: 'sql11504269',
+    password: 'TZJR8LWAb7',
+    database: 'sql11504269',
     port: '3306'
 });
  
